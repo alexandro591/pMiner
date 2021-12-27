@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  pminer1:
+    image: pminer
+    working_dir: /pminer
+    build: .
+    container_name: pminer1
+    restart: always
+    tty: true
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sed -i "/\"url\": \"URL\",/c\\\"url\": \"rx.unmineable.com:3333\"," config.json
+        sed -i "/\"user\": \"USER\",/c\\\"user\": \"SAITAMA:0x975253A0eC2822fAe58f49630e38E57aa2aAB840.pminer1\"," config.json
+        ./xmrig
